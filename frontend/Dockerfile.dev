@@ -1,0 +1,17 @@
+# Development Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install dependencies first (better caching)
+COPY package*.json ./
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Expose React default port
+EXPOSE 3000
+
+# Run development server
+CMD ["npm", "start"]
